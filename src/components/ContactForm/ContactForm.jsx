@@ -6,6 +6,7 @@ import { StyledForm, Error, StyledInput, AddContactButton, UserIcon, UserPhone  
 
 const ContactShema = Yup.object().shape({
     name: Yup.string()
+    .trim()
       .min(2, 'Too Short!')
       .matches(
         /^[a-zA-Zа-яА-Я]+([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/,
@@ -13,6 +14,7 @@ const ContactShema = Yup.object().shape({
       )
       .required('This is a required field'),
     number: Yup.string()
+    .trim()
       .matches(
         /^\+?\d{1,4}?[ .\-s]?(\(\d{1,3}?\))?([ .\-s]?\d{1,4}){1,4}$/,
         "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
