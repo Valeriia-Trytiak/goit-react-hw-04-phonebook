@@ -7,18 +7,11 @@ import { ContactList } from './ContactList/ContactList';
 import { Container } from './Container/Container.styled';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
-
-  //При завантаженні сторінки беру дані з локального сховища для відмальовки
-  useEffect(() => {
+  const [contacts, setContacts] = useState(()=>{
     const saveContacts = localStorage.getItem('contacts-list');
-    if (saveContacts === null) {
-      return;
-    } else {
-      setContacts(JSON.parse(saveContacts));
-    }
-  }, []);
+    return JSON.parse(saveContacts) || [ ]
+     });
+  const [filter, setFilter] = useState('');
 
   //Записую у локальне сховище дані зі стейту
     useEffect(()=> {
